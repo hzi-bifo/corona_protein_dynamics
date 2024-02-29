@@ -1,0 +1,35 @@
+================================================================
+Program: CD-HIT, V4.5.4, Oct 07 2013, 13:30:39
+Command: ./cd-hit-est -i ../merged_segments_2003-2005.fst -o
+         clust_2003_2005_0.99.fst -c 0.99 -n 9
+
+Started: Mon Oct  7 13:44:31 2013
+================================================================
+                            Output                              
+----------------------------------------------------------------
+total seq: 648
+longest and shortest : 13627 and 11388
+Total letters: 8642010
+Sequences have been sorted
+
+Approximated minimal memory consumption:
+Sequence        : 8M
+Buffer          : 1 X 14M = 14M
+Table           : 1 X 4M = 4M
+Miscellaneous   : 1M
+Total           : 28M
+
+Table limit with the given memory limit:
+Max number of representatives: 4194304
+Max number of word counting entries: 96383310
+
+comparing sequences from          0  to        648
+
+      648  finished        149  clusters
+
+Apprixmated maximum memory consumption: 44M
+writing new database
+writing clustering information
+program completed !
+
+Total CPU time 41

@@ -1,0 +1,6 @@
+*.pyc
+old
+prnt_out.txt
+libs/*/old
+test_data/S_Germany/DE.metadata.tsv
+test_data/S_Germany/DE.fasta
