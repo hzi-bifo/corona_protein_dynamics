@@ -2,5 +2,5 @@
 old
 prnt_out.txt
 libs/*/old
-test_data/S_Germany/DE.metadata.tsv
-test_data/S_Germany/DE.fasta
+test_data/Germany/DE.metadata.tsv
+test_data/Germany/DE.fasta
