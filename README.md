@@ -8,6 +8,7 @@ git clone https://github.com/hzi-bifo/corona_protein_dynamics.git
 cd corona_protein_dynamics
 conda env create -f environment.yml
 ```
+The binaries for `libs/phylogeo-tools` are included within this repository. Should they prove incompatible with your system, please build them according to the instructions provided in `libs/phylogeo-tools`.
 
 ## Usage
 
