@@ -28,10 +28,11 @@ Options:
   -h, --help  Show help
 ```
 
-After uncompress the test data in test_data/S_Germany with:
+After uncompress the test data in `test_data/Germany` with:
 ```shell
-pigz -d test_data/S_Germany/DE.metadata.tsv.gz test_data/S_Germany/DE.fasta.gz
+pigz -d test_data/Germany/DE.metadata.tsv.gz test_data/Germany/DE.fasta.gz
 ```
+The test data were created using sequences downloaded from NCBI, and the EPI_ISL IDs were artificially generated only for testing purposes.
 
 You can run the pipeline on test data:
 ```shell
@@ -39,13 +40,13 @@ bash corona_sd_plot.sh \
   <output dir> \
   -r root_seq/Asia_root_cds.fa \
   -t month \
-  -c test_data/S_Germany/DE.fasta \
-  -l test_data/S_Germany/DE.metadata.tsv
+  -c test_data/Germany/DE.fasta \
+  -l test_data/Germany/DE.metadata.tsv
 ```
 
 This will start the pipeline in the `<output dir>` folder you have created, use the root sequence from file `root_seq/Asia_root_cds.fa` and test data for Germany, and make a plot with monthly time periods.
 
-The `-l` option requires a metadata file as input (e.g., `-l DE.metadata.tsv`) to map amino acid substitutions to pangolin lineages. The `metadata.tsv` file should adhere to the format exemplified in `test_data/S_Germany/DE.metadata.tsv`
+The `-l` option requires a metadata file as input (e.g., `-l DE.metadata.tsv`) to map amino acid substitutions to pangolin lineages. The `metadata.tsv` file should adhere to the format exemplified in `test_data/Germany/DE.metadata.tsv`
 
 The script requires sequences to have header in the following format:
 ```shell
