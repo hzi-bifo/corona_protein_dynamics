@@ -5,4 +5,3 @@ libs/*/old
 test_data/Germany/DE.metadata.tsv
 test_data/Germany/DE.fasta
 setup.txt
-libs/phylogeo-tools
