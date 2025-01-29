@@ -9,13 +9,49 @@ cd corona_protein_dynamics
 conda env create -f environment.yml
 ```
 
-The binaries for `libs/phylogeo-tools` should be fetched and build with the following commands.
+If the pre-built binaries in libs/phylogeo-tools do not work, they should be build with the following commands .
 ```
+rm -rf libs/phylogeo-tools
 git clone https://github.com/hzi-bifo/phylogeo-tools.git libs/phylogeo-tools
 cd libs/phylogeo-tools
 mkdir -p build/
-make build/tree-build-as-pangolin
+conda activate corona_sd_plots
+make
 cd ../../
+```
+
+## Use singularity container
+
+```
+singularity pull --arch amd64 library://zldeng/collection/corona_protein_dynamics:latest
+```
+
+- Create the output directory
+
+```
+mkdir output
+```
+
+- Download the test data
+
+```
+mkdir -p testdata
+cd testdata
+wget https://raw.githubusercontent.com/hzi-bifo/corona_protein_dynamics/refs/heads/new_sd_plots/test_data/Germany/DE.fasta.gz
+wget https://raw.githubusercontent.com/hzi-bifo/corona_protein_dynamics/refs/heads/new_sd_plots/test_data/Germany/DE.metadata.tsv.gz
+gunzip DE.fasta.gz
+gunzip DE.metadata.tsv.gz
+```
+
+- Run the container:
+
+```
+singularity exec corona_protein_dynamics_latest.sif \
+  bash /opt/corona_protein_dynamics/corona_sd_plot.sh output \
+  -r /opt/corona_protein_dynamics/root_seq/Asia_root_cds.fa \
+  -t month \
+  -c testdata/DE.fasta \
+  -l testdata/DE.metadata.tsv
 ```
 
 ## Usage
@@ -39,7 +75,8 @@ Options:
 
 After uncompress the test data in `test_data/Germany` with:
 ```shell
-pigz -d test_data/Germany/DE.metadata.tsv.gz test_data/Germany/DE.fasta.gz
+gunzip test_data/Germany/DE.metadata.tsv.gz
+gunzip test_data/Germany/DE.fasta.gz
 ```
 The test data were created using sequences downloaded from NCBI, and the EPI_ISL IDs were artificially generated only for testing purposes.
 
@@ -53,7 +90,7 @@ bash corona_sd_plot.sh \
   -l test_data/Germany/DE.metadata.tsv
 ```
 
-This will start the pipeline in the `<output dir>` folder you have created, use the root sequence from file `root_seq/Asia_root_cds.fa` and test data for Germany, and make a plot with monthly time periods.
+This will start the pipeline in the `<output dir>` folder you have created, use the root sequence from file `root_seq/Asia_root_cds.fa` and test data for Germany, and make a plot with monthly time periods. The runtime on this test data is around 25 minutes.
 
 The `-l` option requires a metadata file as input (e.g., `-l DE.metadata.tsv`) to map amino acid substitutions to pangolin lineages. The `metadata.tsv` file should adhere to the format exemplified in `test_data/Germany/DE.metadata.tsv`
 
@@ -61,3 +98,5 @@ The script requires sequences to have header in the following format:
 ```shell
 >Germany/BY-ChVir-1017/2020|EPI_ISL_450209|2020-01-30
 ```
+
+
