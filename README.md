@@ -7,6 +7,7 @@ This repository hosts code for computing the mutation dynamics of S-protein in S
 git clone https://github.com/hzi-bifo/corona_protein_dynamics.git
 cd corona_protein_dynamics
 conda env create -f environment.yml
+conda activate corona_sd_plots
 ```
 
 If the pre-built binaries in libs/phylogeo-tools do not work, they should be build with the following commands .
@@ -18,40 +19,6 @@ mkdir -p build/
 conda activate corona_sd_plots
 make
 cd ../../
-```
-
-## Use singularity container
-
-```
-singularity pull --arch amd64 library://zldeng/collection/corona_protein_dynamics:latest
-```
-
-- Create the output directory
-
-```
-mkdir output
-```
-
-- Download the test data
-
-```
-mkdir -p testdata
-cd testdata
-wget https://raw.githubusercontent.com/hzi-bifo/corona_protein_dynamics/refs/heads/new_sd_plots/test_data/Germany/DE.fasta.gz
-wget https://raw.githubusercontent.com/hzi-bifo/corona_protein_dynamics/refs/heads/new_sd_plots/test_data/Germany/DE.metadata.tsv.gz
-gunzip DE.fasta.gz
-gunzip DE.metadata.tsv.gz
-```
-
-- Run the container:
-
-```
-singularity exec corona_protein_dynamics_latest.sif \
-  bash /opt/corona_protein_dynamics/corona_sd_plot.sh output \
-  -r /opt/corona_protein_dynamics/root_seq/Asia_root_cds.fa \
-  -t month \
-  -c testdata/DE.fasta \
-  -l testdata/DE.metadata.tsv
 ```
 
 ## Usage
@@ -99,4 +66,36 @@ The script requires sequences to have header in the following format:
 >Germany/BY-ChVir-1017/2020|EPI_ISL_450209|2020-01-30
 ```
 
+## Use singularity container
 
+```
+singularity pull --arch amd64 library://zldeng/collection/corona_protein_dynamics:latest
+```
+
+- Create the output directory
+
+```
+mkdir output
+```
+
+- Download the test data
+
+```
+mkdir -p testdata
+cd testdata
+wget https://raw.githubusercontent.com/hzi-bifo/corona_protein_dynamics/refs/heads/new_sd_plots/test_data/Germany/DE.fasta.gz
+wget https://raw.githubusercontent.com/hzi-bifo/corona_protein_dynamics/refs/heads/new_sd_plots/test_data/Germany/DE.metadata.tsv.gz
+gunzip DE.fasta.gz
+gunzip DE.metadata.tsv.gz
+```
+
+- Run the container:
+
+```
+singularity exec corona_protein_dynamics_latest.sif \
+  bash /opt/corona_protein_dynamics/corona_sd_plot.sh output \
+  -r /opt/corona_protein_dynamics/root_seq/Asia_root_cds.fa \
+  -t month \
+  -c testdata/DE.fasta \
+  -l testdata/DE.metadata.tsv
+```
