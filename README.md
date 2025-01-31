@@ -68,7 +68,10 @@ The script requires sequences to have header in the following format:
 
 ## Use singularity container
 
+- Pull the singularity image
+
 ```
+singularity remote add --no-login cloud https://cloud.sylabs.io
 singularity pull --arch amd64 library://zldeng/collection/corona_protein_dynamics:latest
 ```
 
