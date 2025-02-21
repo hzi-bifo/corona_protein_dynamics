@@ -2,7 +2,6 @@ name: corona_sd_plots
 channels:
   - conda-forge
   - bioconda
-  - defaults
 dependencies:
   - biopython=1.74=py27h7b6447c_0
   - blas=1.0=mkl
