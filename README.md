@@ -7,7 +7,6 @@ This repository hosts code for computing the mutation dynamics of S-protein in S
 git clone https://github.com/hzi-bifo/corona_protein_dynamics.git
 cd corona_protein_dynamics
 conda env create -f environment.yml
-conda activate corona_sd_plots
 ```
 
 If the pre-built binaries in libs/phylogeo-tools do not work, they should be build with the following commands .
@@ -15,6 +14,7 @@ If the pre-built binaries in libs/phylogeo-tools do not work, they should be bui
 rm -rf libs/phylogeo-tools
 git clone https://github.com/hzi-bifo/phylogeo-tools.git libs/phylogeo-tools
 cd libs/phylogeo-tools
+conda activate corona_sd_plots
 mkdir -p build/
 conda activate corona_sd_plots
 make
