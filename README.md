@@ -9,13 +9,14 @@ cd corona_protein_dynamics
 conda env create -f environment.yml
 ```
 
-If the pre-built binaries in libs/phylogeo-tools do not work, they should be build with the following commands .
+If the pre-built binaries in libs/phylogeo-tools do not work, they should be build with the following commands.
 ```
 rm -rf libs/phylogeo-tools
 git clone https://github.com/hzi-bifo/phylogeo-tools.git libs/phylogeo-tools
 cd libs/phylogeo-tools
 mkdir -p build/
-conda activate corona_sd_plots
+conda create -n cxx cxx-compiler c-compiler libstdcxx-ng boost boost-cpp libarchive
+conda activate cxx
 make
 cd ../../
 ```
@@ -45,6 +46,12 @@ gunzip test_data/Germany/DE.metadata.tsv.gz
 gunzip test_data/Germany/DE.fasta.gz
 ```
 The test data were created using sequences downloaded from NCBI, and the EPI_ISL IDs were artificially generated only for testing purposes.
+
+Create output directory and activate the env 
+```shell
+mkdir -p <output dir>
+conda activate corona_sd_plots
+```
 
 You can run the pipeline on test data:
 ```shell
