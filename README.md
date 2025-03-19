@@ -14,7 +14,6 @@ If the pre-built binaries in libs/phylogeo-tools do not work, they should be bui
 rm -rf libs/phylogeo-tools
 git clone https://github.com/hzi-bifo/phylogeo-tools.git libs/phylogeo-tools
 cd libs/phylogeo-tools
-conda activate corona_sd_plots
 mkdir -p build/
 conda activate corona_sd_plots
 make
