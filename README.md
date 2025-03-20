@@ -21,11 +21,14 @@ Options:
   -h, --help  Show help
 ```
 
-- There are two ways to install this pipeline:
+### There are two ways to install this pipeline
   
   1. [Install it from the source in this repository](#installation-with-conda)
   1. [Use singularity](#use-singularity-container)
 
+
+> [!IMPORTANT]  
+> Singularity image guarantees reproducibility by encapsulating exact package builds. To avoid potential licensing issues with the Conda defaults channel—which now requires a license for commercial use—we have removed it from our environment YAML file. As a result, the package builds provided solely by the community channels (conda-forge and bioconda) may differ from those originally set up in our pipeline.
   
 ## Installation with conda
 
@@ -65,7 +68,8 @@ cd ../../
 gunzip test_data/Germany/DE.metadata.tsv.gz
 gunzip test_data/Germany/DE.fasta.gz
 ```
-The test data were created using sequences downloaded from NCBI, and the EPI_ISL accessions were artificially generated only for testing purposes.
+> [!NOTE]
+> The test data were created using sequences downloaded from NCBI, and the EPI_ISL accessions were artificially generated only for testing purposes.
 
 ### 4. Create output directory and activate the env 
 ```shell
@@ -89,57 +93,6 @@ This will start the pipeline in the `<output dir>` folder you have created, use 
 The `-l` option requires a metadata file as input (e.g., `-l DE.metadata.tsv`) to map amino acid substitutions to pangolin lineages. The `metadata.tsv` file should adhere to the format exemplified in `test_data/Germany/DE.metadata.tsv`
 
 
-
-If you run the pipeline on your own data, please prepare the genomics fasta file and the metadata file following the same format like the test data. 
-- Header format of fasta file
-
-  The script requires sequences to have header in the following format:
-
-  ```
-  >Germany/BY-ChVir-1017/2020|EPI_ISL_450209|2020-01-30
-  ```
-  
-  | Field          | Description    | 
-  | -------------- | -------------- | 
-  | 1| sequence ID starts with country name|
-  | 2| EPI_ISL accession|
-  | 3| sequence collection date|
-
-- Metadata file format
-
-  This 22 columns TSV file is important for providing more information about each sequence. The sequence and metadata are linked by the EPI_ISL accession. Therefore, the EPI_ISL accession (second field of header) in the fasta header should be given also in the 3rd column in the metadata.
-  
-  This file is usually generated based on the metadata file from GISAID
-
-  ```
-  hCoV-19/Germany/HB-OY751659/2022	ncov	EPI_ISL_5751659	?	2022-12-13	Europe	Germany	Bremen	NA	Europe	Germany	Bremen	genome	29731	Human	unknown	unknown	?	BF.7	NA	NA	2022-12
-  ```
-
-  | Column          | Description   | Importance |
-  | -------------- | -------------- | ---------  |
-  | 1 | sequence ID starts with hCoV-19 then country name | important |
-  | 2 | "ncov" | just put "ncov" |
-  | 3 | EPI_ISL accession | important |
-  | 4 | "?" | just put "?" |
-  | 5 | collection date | important |
-  | 6 | continent |  important for continent wise analysis |
-  | 7 | country | important |
-  | 8 | region | important for regional analysis |
-  | 9 | "?" | just put "?" |
-  | 10 | continent where the genome was sequenced | usually the same as col 6 |
-  | 11 | country where the genome was sequenced | usually the same as col 7 |
-  | 12 | region where the genome was sequenced | usually the same as col 8 |
-  | 13 | "genome" | just put "genome" |
-  | 14 | genome length | used to check genome quality |
-  | 15 | virus host | just put "Human" |
-  | 16 | "unknown" | just put "unknown" |
-  | 17 | "unknown" | just put "unknown" |
-  | 18 | "?" | just put "?" |
-  | 19 |  Pangolin lineage assignment | required for mutation-lineage mapping |
-  | 20 | "NA" | just put "NA" |
-  | 21 | "NA" | just put "NA" |
-  | 22 | collection month | required |
-   
 
 ## Use singularity container
 
@@ -177,6 +130,62 @@ singularity exec corona_protein_dynamics_latest.sif \
   -c testdata/DE.fasta \
   -l testdata/DE.metadata.tsv
 ```
+
+## File formats
+
+> [!NOTE]
+> If you run the pipeline on your own data, please prepare the genomics fasta file and the metadata file following the same format like the test data. 
+
+### Header format of fasta file
+
+  The script requires sequences to have header in the following format:
+
+  ```
+  >Germany/BY-ChVir-1017/2020|EPI_ISL_450209|2020-01-30
+  ```
+  
+  | Field          | Description    | 
+  | -------------- | -------------- | 
+  | 1| sequence ID starts with country name|
+  | 2| EPI_ISL accession|
+  | 3| sequence collection date|
+
+### Metadata file format
+
+ > [!NOTE]  
+ > This 22 columns TSV file is important for providing more information about each sequence. The sequence and metadata are linked by the EPI_ISL accession. Therefore, the EPI_ISL accession (second field of header) in the fasta header should be given also in the 3rd column in the metadata.
+  
+  This file is usually generated based on the metadata file from GISAID
+
+  ```
+  hCoV-19/Germany/HB-OY751659/2022	ncov	EPI_ISL_5751659	?	2022-12-13	Europe	Germany	Bremen	NA	Europe	Germany	Bremen	genome	29731	Human	unknown	unknown	?	BF.7	NA	NA	2022-12
+  ```
+
+  | Column          | Description   | Importance |
+  | -------------- | -------------- | ---------  |
+  | 1 | sequence ID starts with hCoV-19 then country name | important |
+  | 2 | "ncov" | just put "ncov" |
+  | 3 | EPI_ISL accession | important |
+  | 4 | "?" | just put "?" |
+  | 5 | collection date | important |
+  | 6 | continent |  important for continent wise analysis |
+  | 7 | country | important |
+  | 8 | region | important for regional analysis |
+  | 9 | "?" | just put "?" |
+  | 10 | continent where the genome was sequenced | usually the same as col 6 |
+  | 11 | country where the genome was sequenced | usually the same as col 7 |
+  | 12 | region where the genome was sequenced | usually the same as col 8 |
+  | 13 | "genome" | just put "genome" |
+  | 14 | genome length | used to check genome quality |
+  | 15 | virus host | just put "Human" |
+  | 16 | "unknown" | just put "unknown" |
+  | 17 | "unknown" | just put "unknown" |
+  | 18 | "?" | just put "?" |
+  | 19 |  Pangolin lineage assignment | required for mutation-lineage mapping |
+  | 20 | "NA" | just put "NA" |
+  | 21 | "NA" | just put "NA" |
+  | 22 | collection month | required |
+   
 
 
 
