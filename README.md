@@ -23,14 +23,16 @@ Options:
 
 ### There are two ways to install this pipeline
   
-  1. [Install it from the source in this repository](#installation-with-conda)
-  1. [Use singularity](#use-singularity-container)
+  1. [Install it from the source in this repository](#i-installation-with-conda)
+  1. [Use singularity](#ii-use-singularity-container)
 
 
 > [!IMPORTANT]  
 > Singularity image guarantees reproducibility by encapsulating exact package builds. To avoid potential licensing issues with the Conda defaults channel—which now requires a license for commercial use—we have removed it from our environment YAML file. As a result, the package builds provided solely by the community channels (conda-forge and bioconda) may differ from those originally set up in our pipeline.
   
-## Installation with conda
+
+
+## I. Installation with conda
 
 ### 1. Clone the repo source code and create conda env
 
@@ -94,7 +96,8 @@ The `-l` option requires a metadata file as input (e.g., `-l DE.metadata.tsv`) t
 
 
 
-## Use singularity container
+
+## II. Use singularity container
 
 ### 1. Pull the singularity image
 
