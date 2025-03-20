@@ -22,8 +22,9 @@ Options:
 ```
 
 - There are two ways to install this pipeline:
-  1. [Install it from the source in this repository](##-installation-with-conda)
-  1. [Use singularity](##-use-singularity-container)
+  
+  1. [Install it from the source in this repository](#installation-with-conda)
+  1. [Use singularity](#use-singularity-container)
 
   
 ## Installation with conda
