@@ -190,6 +190,16 @@ singularity exec corona_protein_dynamics_latest.sif \
   | 22 | collection month | required |
    
 
+## Output files
 
+There are two important output files
+
+- `.significant_positions.pdf`
+
+  The protein mutation dynamics plot with significant changes being marked
+
+- `.mutation_lineage.summary.tsv` and `.mutation_lineage.summary.json`
+
+  The fraction of each mutation contributed by different lineages
 
 
