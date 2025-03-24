@@ -22,6 +22,7 @@ Options:
 ```
 
 ### There are two ways to install this pipeline
+  This pipeline has been only tested on **Linux** system.
   
   1. [Install it from the source in this repository](#i-installation-with-conda)
   1. [Use singularity](#ii-use-singularity-container)
@@ -33,6 +34,8 @@ Options:
 
 
 ## I. Installation with conda
+
+Conda can be slow at resolving dependencies, whereas micromamba is much faster for installations. You an also use micromamba to create the environment.
 
 ### 1. Clone the repo source code and create conda env
 
@@ -57,7 +60,7 @@ mkdir -p build/
 - 2.2 Create conda env for compilation and compile the code
 
 ```
-conda create -n cxx cxx-compiler c-compiler libstdcxx-ng boost boost-cpp libarchive
+conda create -n cxx -c conda-forge cxx-compiler c-compiler libstdcxx-ng boost boost-cpp libarchive
 conda activate cxx
 make
 cd ../../
