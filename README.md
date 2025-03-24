@@ -66,6 +66,9 @@ make
 cd ../../
 ```
 
+> [!IMPORTANT]
+> If you enconter any issues with installation and compilation, please refer to [Command issues](#common-errors-or-issues)
+
 
 ### 3. Uncompress the test data in `test_data/Germany`
 
@@ -206,4 +209,12 @@ There are two important output files
 
   The fraction of each mutation contributed by different lineages
 
+## Common errors or issues
 
+1. convert command not found
+
+   You can ignore it as this command just convert plots from PDF to PNG format.
+
+2. collect2: error: ld returned 1 exit status
+
+   Your system's GLIBC is outdated. Please update it to a newer version. The update process will vary depending on your OS distribution.
