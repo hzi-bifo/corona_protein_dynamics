@@ -215,6 +215,7 @@ There are two important output files
 
    You can ignore it as this command just convert plots from PDF to PNG format.
 
-2. collect2: error: ld returned 1 exit status
+2. collect2: error: ld returned 1 exit status when compiling `phylogeo-tools`
 
    Your system's GLIBC is outdated. Please update it to a newer version. The update process will vary depending on your OS distribution.
+   In most cases, you can use the pre-built binary in the libs folder without needing to build it manually. Only compile the code if the pre-built version does not work.
