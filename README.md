@@ -96,7 +96,7 @@ bash corona_sd_plot.sh \
   -l test_data/Germany/DE.metadata.tsv
 ```
 
-This will start the pipeline in the `<output dir>` folder you have created, use the root sequence from file `root_seq/Asia_root_cds.fa` and test data for Germany, and make a plot with monthly time periods. The runtime on this test data is around 25 minutes.
+This will start the pipeline in the `<output dir>` folder you have created, use the root sequence from file `root_seq/Asia_root_cds.fa` and test data for Germany, and make a plot with monthly time periods. The runtime on this test data is around 30 minutes.
 
 The `-l` option requires a metadata file as input (e.g., `-l DE.metadata.tsv`) to map amino acid substitutions to pangolin lineages. The `metadata.tsv` file should adhere to the format exemplified in `test_data/Germany/DE.metadata.tsv`
 
