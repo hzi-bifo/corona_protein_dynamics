@@ -46,7 +46,7 @@ conda env create -f environment.yml
 ```
 
 ### 2. Compile `phylogeo-tools` (optional, needed only when the pre-built does not work)
-If the pre-built binaries (`phylogeo_sankoff_general_dna`, `mutation-samples` and `tree-build-as-pangolin`) in `libs/phylogeo-tools/build` do not work, they should be built with the following commands.
+If the pre-built binaries (`phylogeo_sankoff_general_dna`, `mutation-samples` and `tree-build-as-pangolin`) in `libs/phylogeo-tools/build` do not work, they should be built with the following commands. **Please don't build them from source code if the pre-built binaries work fine.**
 
 - 2.1 Clean and clone the phylogeo-tools repo into `libs/phylogeo-tools`
 
