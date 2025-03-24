@@ -62,6 +62,7 @@ mkdir -p build/
 ```
 conda create -n cxx -c conda-forge cxx-compiler c-compiler libstdcxx-ng boost boost-cpp libarchive
 conda activate cxx
+export LD_LIBRARY_PATH=$CONDA_PREFIX/lib
 make
 cd ../../
 ```
