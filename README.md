@@ -220,7 +220,8 @@ There are two important output files
 
    Your system's GLIBC is outdated. Please update it to a newer version. The update process will vary depending on your OS distribution.
    In most cases, you can use the pre-built binary in the libs folder without needing to build it manually. Only compile the code if the pre-built version does not work.
+   If the pre-built binaries are not compatible with you OS and you could not compile them from source. You can use the Singularity image as describe [here](#ii-use-singularity-container).
 
-3. expansion requires a literal when running with singularity
+4. expansion requires a literal when running with singularity
 
    This message can be ignored.
