@@ -128,6 +128,7 @@ wget https://raw.githubusercontent.com/hzi-bifo/corona_protein_dynamics/refs/hea
 wget https://raw.githubusercontent.com/hzi-bifo/corona_protein_dynamics/refs/heads/new_sd_plots/test_data/Germany/DE.metadata.tsv.gz
 gunzip DE.fasta.gz
 gunzip DE.metadata.tsv.gz
+cd ..
 ```
 
 ### 4. Run the container:
