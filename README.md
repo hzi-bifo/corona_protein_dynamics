@@ -113,13 +113,7 @@ singularity remote add --no-login cloud https://cloud.sylabs.io
 singularity pull --arch amd64 library://zldeng/collection/corona_protein_dynamics:latest
 ```
 
-### 2. Create the output directory
-
-```shell
-mkdir output
-```
-
-### 3. Download the test data
+### 2. Download the test data
 
 ```shell
 mkdir -p testdata
@@ -129,6 +123,12 @@ wget https://raw.githubusercontent.com/hzi-bifo/corona_protein_dynamics/refs/hea
 gunzip DE.fasta.gz
 gunzip DE.metadata.tsv.gz
 cd ..
+```
+
+### 3. Create the output directory
+
+```shell
+mkdir output
 ```
 
 ### 4. Run the container:
