@@ -97,7 +97,8 @@ This will start the pipeline in the `<output dir>` folder you have created, use 
 
 The `-l` option requires a metadata file as input (e.g., `-l DE.metadata.tsv`) to map amino acid substitutions to pangolin lineages. The `metadata.tsv` file should adhere to the format exemplified in `test_data/Germany/DE.metadata.tsv`
 
-
+> [!NOTE]
+> You might see the warning: `convert: command not found`. You can ignore this message, as the command is only used to convert plots in PDF to PNG format.
 
 
 ## II. Use singularity container
