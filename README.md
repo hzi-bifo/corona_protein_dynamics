@@ -67,6 +67,7 @@ conda activate cxx
 export LD_LIBRARY_PATH=$CONDA_PREFIX/lib
 make
 cd ../../
+conda deactivate
 ```
 
 > [!IMPORTANT]
