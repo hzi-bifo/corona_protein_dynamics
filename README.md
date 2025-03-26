@@ -35,13 +35,14 @@ Options:
 
 ## I. Installation with conda
 
-Conda can be slow at resolving dependencies, whereas micromamba is much faster for installations. You an also use micromamba to create the environment.
+Conda can be slow at resolving dependencies, whereas **`micromamba`** is much faster. You can use micromamba to create the environment.
 
 ### 1. Clone the repo source code and create conda env
 
 ```shell
 git clone https://github.com/hzi-bifo/corona_protein_dynamics.git
 cd corona_protein_dynamics
+# use micromamba if it takes too long
 conda env create -f environment.yml
 ```
 
@@ -59,7 +60,8 @@ mkdir -p build/
 
 - 2.2 Create conda env for compilation and compile the code
 
-```
+```shell
+# use micromamba if it takes too long
 conda create -n cxx -c conda-forge cxx-compiler c-compiler libstdcxx-ng boost boost-cpp libarchive
 conda activate cxx
 export LD_LIBRARY_PATH=$CONDA_PREFIX/lib
@@ -83,6 +85,7 @@ gunzip test_data/Germany/DE.fasta.gz
 ### 4. Create output directory and activate the env 
 ```shell
 mkdir -p <output dir>
+# use micromamba activate if you installed dependencies with micromamba
 conda activate corona_sd_plots
 ```
 
