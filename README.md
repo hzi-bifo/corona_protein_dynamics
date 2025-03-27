@@ -24,29 +24,30 @@ Options:
 ### There are two ways to install this pipeline
   This pipeline has been only tested on **Linux** system.
   
-  1. [Install it from the source in this repository](#i-installation-with-conda)
+  1. [Install it from the source in this repository](#i-installation-with-micromamba)
   1. [Use singularity](#ii-use-singularity-container)
+
 
 
 > [!IMPORTANT]  
 > Singularity image guarantees reproducibility by encapsulating exact package builds. To avoid potential licensing issues with the Conda defaults channel—which now requires a license for commercial use—we have removed it from our environment YAML file. As a result, the package builds provided solely by the community channels (conda-forge and bioconda) may differ from those originally set up in our pipeline.
-  
+> If you enconter any issues with installation and running the pipeline, please refer to [Command issues](#common-errors-or-issues)
 
 
-## I. Installation with conda
+## I. Installation with micromamba
 
-Conda can be slow at resolving dependencies, whereas **`micromamba`** is much faster. You can use micromamba to create the environment.
+As **`micromamba`** is much faster than `conda` to resolve the dependencies, we recommend to use it to create the environment. Check [here](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html) if you don't know how to install micromamba. 
+If you still prefer conda, just replace` micromamba` with `conda` in the command lines.
 
 > [!IMPORTANT]
-> Before installation please remove the `defaults` channel from the `~/.condarc` file
+> Before installation please remove the `defaults` channel from the `~/.mambarc`, `~/.condarc` file
 
 ### 1. Clone the repo source code and create conda env
 
 ```shell
 git clone https://github.com/hzi-bifo/corona_protein_dynamics.git
 cd corona_protein_dynamics
-# use micromamba if it takes too long
-conda env create -f environment.yml
+micromamba env create -f environment.yml
 ```
 
 ### 2. Compile `phylogeo-tools` (optional, needed only when the pre-built does not work)
@@ -64,18 +65,13 @@ mkdir -p build/
 - 2.2 Create conda env for compilation and compile the code
 
 ```shell
-# use micromamba if it takes too long
-conda create -n cxx -c conda-forge cxx-compiler c-compiler libstdcxx-ng boost boost-cpp libarchive
-conda activate cxx
+micromamba create -n cxx -c conda-forge cxx-compiler c-compiler libstdcxx-ng boost boost-cpp libarchive
+micromamba activate cxx
 export LD_LIBRARY_PATH=$CONDA_PREFIX/lib
 make
 cd ../../
-conda deactivate
+micromamba deactivate
 ```
-
-> [!IMPORTANT]
-> If you enconter any issues with installation and compilation, please refer to [Command issues](#common-errors-or-issues)
-
 
 ### 3. Uncompress the test data in `test_data/Germany`
 
@@ -87,11 +83,13 @@ gunzip test_data/Germany/DE.fasta.gz
 > The test data were created using sequences downloaded from NCBI, and the EPI_ISL accessions were artificially generated only for testing purposes.
 
 ### 4. Create output directory and activate the env 
+
 ```shell
 mkdir -p <output dir>
-# use micromamba activate if you installed dependencies with micromamba
-conda activate corona_sd_plots
+micromamba activate corona_sd_plots
 ```
+
+Make sure the <output dir> is empty and writable.
 
 ### 5. Run the pipeline on test data
 
@@ -117,9 +115,11 @@ The `-l` option requires a metadata file as input (e.g., `-l DE.metadata.tsv`) t
 ### 1. Pull the singularity image
 
 ```shell
+micromamba install singularity=3.8.6
 singularity remote add --no-login cloud https://cloud.sylabs.io
 singularity pull --arch amd64 library://zldeng/collection/corona_protein_dynamics:latest
 ```
+The image has been tested with singularity 3.8.6.
 
 ### 2. Download the test data
 
@@ -136,8 +136,10 @@ cd ..
 ### 3. Create the output directory
 
 ```shell
-mkdir output
+mkdir -p output
 ```
+
+Make sure the `output` directory is empty and writable.
 
 ### 4. Run the container:
 
@@ -222,11 +224,11 @@ There are two important output files
 
 1. `Pip subprocess error`, `CondaEnvException: Pip failed` when creating the env
 
-   Please make sure you don't have `defaults` in `~/.condarc` file
+   We recommend to use `micromamba`. And please make sure you don't have `defaults` in `~/.mambarc`, `~/.condarc` files.
 
 2. `mktemp: failed to create directory via template` when running the singularity container
 
-   Check if the directory defined in the `TMPDIR` environmental variable has writable permission for you.
+   Check if the directory defined in the `TMPDIR` environmental variable has writable permission for you. This error occurs usually when you are using a old version of singularity or apptainer version 1. Please install newer version of singularity with `micromamba install singularity=3.8.6`.
    
 3. convert command not found
 
