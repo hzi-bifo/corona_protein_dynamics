@@ -40,7 +40,7 @@ As **`micromamba`** is much faster than `conda` to resolve the dependencies, we 
 If you still prefer conda, just replace` micromamba` with `conda` in the command lines.
 
 > [!IMPORTANT]
-> Before installation please remove the `defaults` channel from the `~/.mambarc`, `~/.condarc` file
+> Before installation please remove the `defaults` channel from the `~/.mambarc`, `~/.condarc` files.
 
 ### 1. Clone the repo source code and create conda env
 
