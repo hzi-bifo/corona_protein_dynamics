@@ -24,19 +24,19 @@ Options:
 ### There are two ways to install this pipeline
   This pipeline has been only tested on **Linux** system.
   
-  1. [Install it from the source in this repository](#i-installation-with-micromamba)
-  1. [Use singularity](#ii-use-singularity-container)
+  1. [Install it from the source in this repository](#i-installation-with-micromamba).
+  1. [Use singularity](#ii-use-singularity-container).
 
 
 
 > [!IMPORTANT]  
 > Singularity image guarantees reproducibility by encapsulating exact package builds. To avoid potential licensing issues with the Conda defaults channel—which now requires a license for commercial use—we have removed it from our environment YAML file. As a result, the package builds provided solely by the community channels (conda-forge and bioconda) may differ from those originally set up in our pipeline.
-> If you enconter any issues with installation and running the pipeline, please refer to [Command issues](#common-errors-or-issues)
+> If you enconter any issues with installation and running the pipeline, please refer to [Command issues](#common-errors-or-issues).
 
 
 ## I. Installation with micromamba
 
-As **`micromamba`** is much faster than `conda` to resolve the dependencies, we recommend to use it to create the environment. Check [here](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html) if you don't know how to install micromamba. 
+As **`micromamba`** is much faster than `conda` to resolve the dependencies, we recommend to use it to create the environment. Check [here](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html), if you don't know how to install micromamba. 
 If you still prefer conda, just replace` micromamba` with `conda` in the command lines.
 
 > [!IMPORTANT]
@@ -51,7 +51,7 @@ micromamba env create -f environment.yml
 ```
 
 ### 2. Compile `phylogeo-tools` (optional, needed only when the pre-built does not work)
-If the pre-built binaries (`phylogeo_sankoff_general_dna`, `mutation-samples` and `tree-build-as-pangolin`) in `libs/phylogeo-tools/build` do not work, they should be built with the following commands. **Please don't build them from source code if the pre-built binaries work fine.**
+If the pre-built binaries (`phylogeo_sankoff_general_dna`, `mutation-samples` and `tree-build-as-pangolin`) in `libs/phylogeo-tools/build` do not work, they should be built with the following commands. Please don't build them from source code if the pre-built binaries work fine.
 
 - 2.1 Clean and clone the phylogeo-tools repo into `libs/phylogeo-tools`
 
