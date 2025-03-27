@@ -226,21 +226,25 @@ There are two important output files
 
    We recommend to use `micromamba`. And please make sure you don't have `defaults` in `~/.mambarc`, `~/.condarc` files.
 
-2. `mktemp: failed to create directory via template` when running the singularity container
+2. `x86_64-conda-linux-gnu/sysroot/lib64/libasan.so": No such file or directory` error during micromamba install
+  
+   This error usually can be ignored.
+  
+3. `mktemp: failed to create directory via template` when running the singularity container
 
    Check if the directory defined in the `TMPDIR` environmental variable has writable permission for you. This error occurs usually when you are using a old version of singularity or apptainer version 1. Please install newer version of singularity with `micromamba install singularity=3.8.6`.
    
-3. convert command not found
+4. convert command not found
 
    You can ignore it as this command just convert plots from PDF to PNG format.
 
-4. collect2: error: ld returned 1 exit status when compiling `phylogeo-tools`
+5. collect2: error: ld returned 1 exit status when compiling `phylogeo-tools`
 
    Your system's GLIBC is outdated. Please update it to a newer version. The update process will vary depending on your OS distribution.
    In most cases, you can use the pre-built binary in the libs folder without needing to build it manually. Only compile the code if the pre-built version does not work.
    If the pre-built binaries are not compatible with you OS and you could not compile them from source. You can use the Singularity image as describe [here](#ii-use-singularity-container).
 
-5. expansion requires a literal when running with singularity
+6. expansion requires a literal when running with singularity
 
    This message can be ignored.
 
