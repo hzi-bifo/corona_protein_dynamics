@@ -37,6 +37,9 @@ Options:
 
 Conda can be slow at resolving dependencies, whereas **`micromamba`** is much faster. You can use micromamba to create the environment.
 
+> [!IMPORTANT]
+> Before installation please remove the `defaults` channel from the `~/.condarc` file
+
 ### 1. Clone the repo source code and create conda env
 
 ```shell
@@ -217,16 +220,25 @@ There are two important output files
 
 ## Common errors or issues
 
-1. convert command not found
+1. `Pip subprocess error`, `CondaEnvException: Pip failed` when creating the env
+
+   Please make sure you don't have `defaults` in `~/.condarc` file
+
+2. `mktemp: failed to create directory via template` when running the singularity container
+
+   Check if the directory defined in the `TMPDIR` environmental variable has writable permission for you.
+   
+3. convert command not found
 
    You can ignore it as this command just convert plots from PDF to PNG format.
 
-2. collect2: error: ld returned 1 exit status when compiling `phylogeo-tools`
+4. collect2: error: ld returned 1 exit status when compiling `phylogeo-tools`
 
    Your system's GLIBC is outdated. Please update it to a newer version. The update process will vary depending on your OS distribution.
    In most cases, you can use the pre-built binary in the libs folder without needing to build it manually. Only compile the code if the pre-built version does not work.
    If the pre-built binaries are not compatible with you OS and you could not compile them from source. You can use the Singularity image as describe [here](#ii-use-singularity-container).
 
-4. expansion requires a literal when running with singularity
+5. expansion requires a literal when running with singularity
 
    This message can be ignored.
+
